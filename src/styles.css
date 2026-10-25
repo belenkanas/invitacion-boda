@@ -1,0 +1,65 @@
+:root {
+  --noche: #141f36;
+  --noche-2: #1d2b4a;
+  --niebla: #eef1f4;
+  --laton: #b08d57;
+  --salvia: #7c9a8b;
+  --texto: #1b2333;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Jost", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { min-height: 100%; }
+body { font-family: var(--sans); font-weight: 300; color: var(--texto); background: var(--niebla); line-height: 1.6; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; }
+
+/* ---------- Sobre ---------- */
+.escena { min-height: 100vh; display: grid; place-content: center; justify-items: center; gap: 2rem; background: var(--noche); padding: 1.5rem; }
+.sobre { position: relative; width: min(86vw, 340px); aspect-ratio: 3 / 2; perspective: 900px; }
+.frente, .tapa, .carta { position: absolute; inset: 0; }
+.frente { background: var(--noche-2); border-radius: 4px; clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%); z-index: 3; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.tapa { background: #243659; clip-path: polygon(0 0, 100% 0, 50% 58%); transform-origin: top; transition: transform .9s ease; z-index: 4; }
+.carta { background: var(--niebla); border-radius: 4px; display: grid; place-content: center; font-family: var(--serif); font-size: 1.5rem; color: var(--noche); transition: transform .9s ease .7s; z-index: 2; }
+.sello { position: absolute; left: 50%; top: 52%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; border: 0; background: var(--laton); color: var(--noche); font-size: 1.4rem; cursor: pointer; z-index: 5; transition: opacity .3s; animation: latido 2.4s ease-in-out infinite; }
+.sello:focus-visible { outline: 3px solid var(--niebla); outline-offset: 4px; }
+.abriendo .tapa { transform: rotateX(180deg); z-index: 1; }
+.abriendo .carta { transform: translateY(-55%); }
+.abriendo .sello { opacity: 0; animation: none; }
+.pista { color: var(--niebla); opacity: .7; font-size: .95rem; min-height: 1.5em; }
+@keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+/* ---------- Invitación ---------- */
+.invitacion { animation: entrar .8s ease both; }
+@keyframes entrar { from { opacity: 0; } to { opacity: 1; } }
+.portada { min-height: 90vh; display: grid; place-content: center; text-align: center; gap: 1rem; padding: 2rem 1.25rem; background: var(--noche); color: var(--niebla); }
+.portada h1 { font-size: clamp(3rem, 14vw, 6.5rem); font-style: italic; }
+.para { color: var(--laton); font-size: 1.1rem; }
+.fecha { font-size: 1.15rem; letter-spacing: .04em; }
+
+.cuenta { display: flex; justify-content: center; gap: clamp(1rem, 5vw, 2.5rem); padding: 2rem 1rem; background: var(--noche-2); color: var(--niebla); }
+.cuenta div { display: grid; text-align: center; min-width: 3.5rem; }
+.cuenta strong { font-family: var(--serif); font-size: clamp(2rem, 8vw, 3rem); font-weight: 400; }
+.cuenta span { font-size: .85rem; opacity: .75; }
+
+.bloque { max-width: 720px; margin: 0 auto; padding: 3.5rem 1.25rem; text-align: center; }
+.bloque h2 { font-size: 2.4rem; margin-bottom: 1.5rem; }
+.lugares { display: grid; gap: 2rem; }
+@media (min-width: 640px) { .lugares { grid-template-columns: 1fr 1fr; } }
+.lugares h3 { font-size: 1.7rem; color: var(--salvia); }
+.hora { font-family: var(--serif); font-size: 1.6rem; }
+.dir { opacity: .75; font-size: .95rem; }
+.lugares a { display: inline-block; margin-top: .5rem; color: var(--noche); }
+
+.galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; }
+.galeria img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; }
+
+.rsvp { padding-bottom: 5rem; }
+.rsvp p { margin-bottom: 1.25rem; }
+.boton { display: inline-block; padding: .9rem 2rem; background: var(--noche); color: var(--niebla); text-decoration: none; border-radius: 999px; font-weight: 400; }
+.boton:hover { background: var(--noche-2); }
+.boton:focus-visible { outline: 3px solid var(--laton); outline-offset: 3px; }
+.aviso { color: #9a3b3b; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+}
